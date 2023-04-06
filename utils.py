@@ -3,7 +3,7 @@ from datetime import datetime
 
 
 def get_data():
-    """Получаем библиотеки json"""
+    """Работа с библиотекой json. Для получения данных"""
     with open('operations.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
     return data
