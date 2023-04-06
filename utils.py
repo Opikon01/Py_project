@@ -3,12 +3,14 @@ from datetime import datetime
 
 
 def get_data():
+    """Работа с библиотекой json. Для получения данных"""
     with open('operations.json', 'r', encoding='utf-8') as file:
         data = json.load(file)
     return data
 
 
 def get_filtered_data(data, filtered_empty_from):
+    """Функция фильрует по ключу STATE со значением EXECUTED, так же проверяет на начилие ключа FROM"""
     data = [x for x in data if 'state' in x and x['state'] == 'EXECUTED']
     if filtered_empty_from:
         data = [x for x in data if 'from' in x]
@@ -16,11 +18,16 @@ def get_filtered_data(data, filtered_empty_from):
 
 
 def get_last_values(data, count_values):
+    """Функция получает последние значения и сортирует их по вермени. Count_values - кол-во значений"""
     data = sorted(data, key=lambda x: x['date'], reverse=True)
     return data[:count_values]
 
 
 def get_formated_data(data):
+    """Функция возвращает отформатированые данные.
+       Дату, (Перевод от куда , куда) счёт отправителя( первые 6 и последние 4 цифры карты)
+       счёт получаетя (последние 4 цифры карты), сумма перевода, валюта.
+    """
     formated_data = []
     for row in data:
         date = datetime.strptime(row["date"], "%Y-%m-%dT%H:%M:%S.%f").strftime("%d.%m.%Y")
