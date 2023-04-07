@@ -9,11 +9,10 @@ def get_data():
     return data
 
 
-def get_filtered_data(data, filtered_empty_from):
+def get_filtered_data(data):
     """Функция фильрует по ключу STATE со значением EXECUTED, так же проверяет на начилие ключа FROM"""
     data = [x for x in data if 'state' in x and x['state'] == 'EXECUTED']
-    if filtered_empty_from:
-        data = [x for x in data if 'from' in x]
+
     return data
 
 
