@@ -9,8 +9,7 @@ def test_get_data():
 
 
 def test_filtered_data(test_data):
-    assert len(get_filtered_data(test_data, filtered_empty_from=False)) == 3
-    assert len(get_filtered_data(test_data, filtered_empty_from=True)) == 2
+    assert len(get_filtered_data(test_data)) == 3
 
 
 def test_get_last_values(test_data):
